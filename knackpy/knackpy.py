@@ -408,7 +408,10 @@ class Knack(object):
                                 dt_utc = datetime.utcfromtimestamp(d / 1000)
 
                                 # localize the datetime object
-                                dt_local = tz.localize(dt_utc)
+                                try:
+                                    dt_local = tz.localize(dt_utc)
+                                except:
+                                    dt_local = dt_utc
 
                                 # convert to unix timestamp + mills
                                 d = int(dt_local.timestamp() * 1000)
